@@ -285,7 +285,7 @@
 	  ws.send(JSON.stringify({ tipo: "login", nome }))
 	  mostrarGeral("Sistema", `Bem vindo de volta ${nome}`)
   } else {
-	  mostrarGeral("Sistema", "Ponha seu nick pra ser identificado", false)
+	  mostrarGeral("Sistema", "Ponha seu nick pra ser identificado, caso ponha espaço você gosta de negões", false)
   }
   }
   
@@ -406,7 +406,7 @@ function pvUser(nome) {
         mostrarGeral("Sistema", "DIGITA O NOME, ANIMAL", false);
         return;
       }
-      nome = texto;
+      nome = texto.replace(/\s+/g, "")
       pegouNome = true
       localStorage.setItem("nome", nome)
       mostrarGeral("Sistema", `Bem-vindo, ${nome}!`, false);

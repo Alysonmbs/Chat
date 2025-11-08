@@ -261,7 +261,7 @@
     </div>
 
     <div id="online" class="panel">
-      <h3>Online</h3>
+      <h3 id="onlines">Online: 0</h3>
       <div id="users"></div>
     </div>
 
@@ -289,6 +289,7 @@
   }
   }
   
+  const onlines = document.getElementById("onlines")
   const rename = document.getElementById("reset-nm")
   const gerais   = document.getElementById("gerais");
   const privados = document.getElementById("privados");
@@ -391,6 +392,7 @@ function pvUser(nome) {
     users.innerHTML = listaUsuarios
       .map(u => "• " + u)
       .join("<br>");
+      onlines.innerHTML = "Online: " + listaUsuarios.length;
   }
 
 

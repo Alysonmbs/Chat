@@ -257,9 +257,13 @@
 <script>
   const ws = new WebSocket("wss://chat-production-97fb.up.railway.app");
 
-  let nome = "";
-  let pegouNome = false;
+  let nome = localStorage.getItem("nome") || null
+  let pegouNome = nome === null ? false : true
   let listaUsuarios = [];
+  
+  if(pegouNome) {
+	  ws.send(JSON.stringify({ tipo: "login", nome }))
+  }
 
   const gerais   = document.getElementById("gerais");
   const privados = document.getElementById("privados");
@@ -273,6 +277,7 @@
   let activeTab = "geral";
   let notifGeral = false;
   let notifPriv  = false;
+
 
 
 function abrirPerfil(nome, x, y) {

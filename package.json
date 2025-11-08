@@ -1,6 +1,11 @@
 {
+  "name": "chatzao",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
-    "blessed": "^0.1.81",
-    "ws": "^8.18.3"
+    "ws": "^8.18.0"
   }
 }

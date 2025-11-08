@@ -374,7 +374,8 @@ function pvUser(nome) {
         return;
       }
       nome = texto;
-      pegouNome = true;
+      pegouNome = true
+      localStorage.setItem("nome", nome)
       mostrarGeral("Sistema", `Bem-vindo, ${nome}!`, false);
       ws.send(JSON.stringify({ tipo: "login", nome }));
       return;

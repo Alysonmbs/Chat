@@ -1,7 +1,14 @@
 // SERVER FODA [√TD]
+const PORT = process.env.PORT || 3000;
 const WebSocket = require("ws");
-const port = process.env.PORT || 3051;
-const wss = new WebSocket.Server({ port });
+const http = require("http");
+
+const server = http.createServer();
+const wss = new WebSocket.Server({ server });
+
+server.listen(PORT, () => {
+  console.log("Rodando na porta", PORT);
+});
 
 let users = new Map()
 

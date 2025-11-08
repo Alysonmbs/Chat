@@ -1,8 +1,9 @@
 // SERVER FODA [√TD]
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 3051 });
+const port = process.env.PORT || 3051;
+const wss = new WebSocket.Server({ port });
 
-let users = new Map(); // ws → nome
+let users = new Map()
 
 function broadcast(data, except = null) {
     const msg = JSON.stringify(data);
@@ -31,7 +32,16 @@ wss.on("connection", ws => {
             enviarLista();
             return;
         }
-        
+
+	if (!users.has(ws)) {
+        ws.send(JSON.stringify({
+            tipo: "msg",
+            nome: "Sistema",
+            texto: "Envia seu nome antes, animal."
+        }));
+        return;
+        }
+
         if (data.tipo === "kill") {
         console.log("Servidor desligando a pedido do usuário:", data.nome);
         broadcast({ tipo: "msg", 

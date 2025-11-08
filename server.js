@@ -18,7 +18,7 @@ setInterval(() => {
       sock.ping(); 
     }
   }
-}, 3000)
+}, 1000)
 
 function broadcast(data, except = null) {
     const msg = JSON.stringify(data);

@@ -265,6 +265,8 @@
   if(pegouNome) {
 	  ws.send(JSON.stringify({ tipo: "login", nome }))
 	  mostrarGeral("Sistema", `Bem vindo de volta ${nome}`)
+  } else {
+	  mostrarGeral("Sistema", "Ponha seu nick pra ser identificado", false)
   }
   }
 
@@ -364,7 +366,6 @@ function pvUser(nome) {
       .join("<br>");
   }
 
-  mostrarGeral("Sistema", "Ponha seu nick pra ser identificado", false);
 
   entrada.addEventListener("keydown", e => {
     if (e.key !== "Enter") return;

@@ -175,16 +175,21 @@
   }
 
 #non {
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #1b1925;
   padding: 8px;
   color: blue;
-  height: 90%;
+  height: 30%;
   width: 90%;
   left: 50%;
   right: 50%;
   position: fixed;
   z-index: 99999999;
+}
+
+#nan {
+  padding: 8px;
+  background-color: black;
 }
 
   #entrada {
@@ -259,7 +264,7 @@
 <body>
 <div id="non">
   <h1>Bem-vindo ao Chat do Loon</h1>
-  <p>Use "/pv NOME MENSAGEM"<br>• Caso queira usar o privado, ou apenas clique no nick da mensagem</p>
+  <p id="nan">Use "/pv NOME MENSAGEM"<br>• Caso queira usar o privado, ou apenas clique no nick da mensagem</p>
   <button onclick="Sumi()">Fechar</button>
 </div>
 <div id="app">

@@ -255,6 +255,27 @@
     border-radius: 8px;
     flex: 1;
   }
+  
+#sus {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1b1925;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--accent2);
+  z-index: 999999999;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
 
 #sug {
   padding: 6px 12px;
@@ -416,9 +437,9 @@ function Sumi() {
 
 function sug() {
   sugBox.innerHTML = "X"
-  num.display = fixed
+  num.style.display = "flex"
   if(sugBox.innerHTML === "X") {
-    num.display = !num.display
+    num.style.display = "none"
     sugBox.innerHTML = "?"
   }
 }

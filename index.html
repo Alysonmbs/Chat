@@ -267,6 +267,17 @@
   transition: 0.2s;
 }
 
+#numero {
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid var(--accent2);
+  border-radius: 6px;
+  color: #fff;
+  height: 90%;
+  background-color: var(--panel);
+  transition: 0.2s;
+}
+
   #entrada::placeholder {
     color: #777;
   }
@@ -354,7 +365,12 @@
   <button id="sug" onclick="sug()">?</button>
   </div>
   <div id="perfilMini"></div>
-
+</div>
+<div id="sus">
+  <h1>Sugestão</h1>
+  <a href="https://wa.me/557191083585">
+    <button id="numero">MENSAGEM</button>
+    </a>
 </div>
 
 
@@ -400,6 +416,11 @@ function Sumi() {
 
 function sug() {
   sugBox.innerHTML = "X"
+  num.display = fixed
+  if(sugBox.innerHTML === "X") {
+    num.display = !num.display
+    sugBox.innerHTML = "?"
+  }
 }
 
 function Rename() {

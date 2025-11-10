@@ -401,7 +401,8 @@
   let nome = localStorage.getItem("nome") || null
   let pegouNome = nome === null ? false : true
   let listaUsuarios = [];
- 
+  let suges = true
+  
   ws.onopen = () => {
   if(pegouNome) {
 	  ws.send(JSON.stringify({ tipo: "login", nome }))
@@ -436,11 +437,14 @@ function Sumi() {
 }
 
 function sug() {
+  if(suges) {
   sugBox.innerHTML = "X"
   num.style.display = "flex"
-  if(sugBox.innerHTML === "X") {
+  suges = !suges
+  } else {
     num.style.display = "none"
     sugBox.innerHTML = "?"
+    suges = !suges
   }
 }
 

@@ -383,6 +383,7 @@
   const perfilMini = document.getElementById("perfilMini");
   const tabGeral = document.getElementById("tab-geral");
   const tabPriv  = document.getElementById("tab-priv");
+const sugBox = document.getElementById("sug")
 
   entrada.blur()
   let activeTab = "geral";
@@ -394,6 +395,10 @@ function Sumi() {
   setTimeout(() => {
     non.style.display = "none"
   }, 300)
+}
+
+function sug() {
+  sugBox.innerHTML = "X"
 }
 
 function Rename() {

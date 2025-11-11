@@ -97,9 +97,9 @@ wss.on("connection", ws => {
         
         if (data.tipo === "ia") {
           async function chamarIA(prompt) {
-          let api = await fetch(`https://raikken-api.speedhosting.cloud/api/ia/gemini?prompt=${encodeURIComponent(prompt)}&apikey=pato1337`)
+          let api = await fetch(`https://shizuku-apis.shop/api/ias/gpt?texto=${prompt}&apitoken=Loon-dev`)
           let resultado = await api.json()
-          let resposta = await resultado.resposta
+          let resposta = await resultado.resultado.data.resposta
           return resposta
           }
           let IA = await chamarIA(data.texto)

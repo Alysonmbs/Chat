@@ -563,17 +563,21 @@ function pvUser(nome) {
     if (texto.startsWith("/pv ")) {
       const [, para, ...resto] = texto.split(" ");
       const msg = resto.join(" ");
-
       if (!para || !msg) {
         mostrarPrivado("Sistema", "Formato: /pv NOME msg");
         return;
       }
-
       ws.send(JSON.stringify({ tipo:"pv", para, texto: msg }));
       mostrarPrivado(`Você → ${para}`, msg, true);
       return;
     }
-
+    
+    if (texto.startsWith("/ia")) {
+      const [, ...pergunta] = texto.split(" ")
+      if (!pergunta.length) return mostrarGeral("Faltou a pergunta")
+      ws.send(JSON.stringify({tipo:"ia", texto: pergunta.join(" ") }))
+    }
+    
     if (texto === "/off") {
       ws.send(JSON.stringify({ tipo:"kill", nome }));
       ws.close();

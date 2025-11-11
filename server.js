@@ -97,7 +97,7 @@ wss.on("connection", ws => {
         
         if (data.tipo === "ia") {
           async function chamarIA(prompt) {
-          let api = await fetch(`https://zilentapi.top/apis/chatgpt?texto=${prompt}&Key=LOONIE`)
+          let api = await fetch(`https://raikken-api.speedhosting.cloud/api/ia/gemini?prompt=${encodeURIComponent(prompt)}&apikey=pato1337`)
           let resultado = await api.json()
           let resposta = await resultado.resposta
           return resposta

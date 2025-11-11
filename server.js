@@ -2,6 +2,8 @@
 const PORT = process.env.PORT || 3000;
 const WebSocket = require("ws");
 const http = require("http");
+const fetch = (...args) =>
+  import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });

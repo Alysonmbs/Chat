@@ -590,7 +590,11 @@ function pvUser(nome) {
     if (data.tipo === "msg") {
       return mostrarGeral(data.nome, data.texto);
     }
-
+    
+    if (data.tipo === "ia") {
+      return mostrarGeral(data.nome, data.texto)
+    }
+    
     if (data.tipo === "pv") {
       return mostrarPrivado(data.de, data.texto);
     }

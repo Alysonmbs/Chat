@@ -92,6 +92,22 @@ wss.on("connection", ws => {
             }
             return;
         }
+        
+        if (data.tipo === "ia") {
+          async function chamarIA(prompt) {
+          let api = await fetch(`https://zilentapi.top/apis/chatgpt?texto=${prompt}&Key=LOONIE`)
+          let resultado = await api.json()
+          let resposta = await resultado.resposta
+          return resposta
+          }
+          let IA = await chamarIA(data.pergunta)
+          broadcast({
+            tipo: "ia",
+            nome: "Sistema",
+            texto: IA
+          })
+          return
+        }
     });
 
     ws.on("close", () => {

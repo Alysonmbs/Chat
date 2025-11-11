@@ -100,7 +100,7 @@ wss.on("connection", ws => {
           let resposta = await resultado.resposta
           return resposta
           }
-          let IA = await chamarIA(data.pergunta)
+          let IA = await chamarIA(data.texto)
           broadcast({
             tipo: "ia",
             nome: "Sistema",

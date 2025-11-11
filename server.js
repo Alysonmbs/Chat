@@ -99,7 +99,7 @@ wss.on("connection", ws => {
           async function chamarIA(prompt) {
           let api = await fetch(`https://shizuku-apis.shop/api/ias/gpt?texto=${prompt}&apitoken=Loon-dev`)
           let resultado = await api.json()
-          let resposta = await resultado.resultado.data.resposta
+          let resposta = await resultado.resultado.data[0].resposta
           return resposta
           }
           let IA = await chamarIA(data.texto)

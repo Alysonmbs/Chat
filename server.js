@@ -38,7 +38,7 @@ function enviarLista() {
 
 wss.on("connection", ws => {
 
-    ws.on("message", raw => {
+    ws.on("message", async raw => {
         let data;
         try { data = JSON.parse(raw); } catch { return; }
 

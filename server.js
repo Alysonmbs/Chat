@@ -7,6 +7,7 @@ const fetch = (...args) =>
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
+const mem = {}
 
 server.listen(PORT, () => {
   console.log("Rodando na porta", PORT);
@@ -21,6 +22,24 @@ setInterval(() => {
     }
   }
 }, 1000)
+
+function addMem(userId, role, content) {
+  if (!mem[userId]) mem[userId] = []
+  mem[userId].push({ role, content })
+  if (mem[userId].length > 5) mem[userId].shift();
+}
+
+function addContext(userId, minMensagens = 3) {
+  let historico = memoria[userId] || [];
+  if (historico.length <= minMensagens) {
+    return historico.map(m => `${m.role === "user" ? "Usuário" : "Douglas"}: ${m.content}`).join("\n");
+  }
+  let antigas = historico.slice(0, historico.length - minMensagens);
+  let recentes = historico.slice(-minMensagens);
+  let resumoAntigas = antigas.map(m => m.content).join(" ").replace(/\s+/g, " ").slice(0, 200);
+  return `Resumo anterior: ${resumoAntigas}...\n` +
+    recentes.map(m => `${m.role === "user" ? "Usuário" : "Douglas"}: ${m.content}`).join("\n");
+}
 
 function broadcast(data, except = null) {
     const msg = JSON.stringify(data);
@@ -96,6 +115,9 @@ wss.on("connection", ws => {
         }
         
         if (data.tipo === "ia") {
+          addMem(data.nome, "user", data.texto)
+          let contexto = addContext(data.nome)
+          contexto += `\nASS: ${data.nome}`
           async function chamarIA(prompt) {
             let CO = `Responda em pt-br: ${prompt}`
           let api = await fetch(`https://shizuku-apis.shop/api/ias/gpt?texto=${CO}&apitoken=Loon-dev`)
@@ -103,7 +125,8 @@ wss.on("connection", ws => {
           let resposta = await resultado.resultado.data[0].resposta
           return resposta
           }
-          let IA = await chamarIA(data.texto)
+          let IA = await chamarIA(contexto)
+          addMem(data.nome, "Douglas", IA)
           broadcast({
             tipo: "ia",
             nome: "Assistente Douglas",

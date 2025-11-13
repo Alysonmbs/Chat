@@ -7,7 +7,7 @@ const fetch = (...args) =>
 
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
-const mem = {}
+let mem = {}
 
 server.listen(PORT, () => {
   console.log("Rodando na porta", PORT);
@@ -114,7 +114,7 @@ wss.on("connection", ws => {
             return;
         }
         
-        if (data.tipo === 'clear') {
+        if (data.tipo === "clear") {
           mem = {}
           broadcast({
             tipo: "msg",

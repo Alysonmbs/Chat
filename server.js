@@ -117,7 +117,7 @@ wss.on("connection", ws => {
         if (data.tipo === 'clear') {
           mem = {}
           broadcast({
-            tipo: msg,
+            tipo: "msg",
             nome: "Sistema",
             texto: `${data.nome} Resetou a IA`
           })

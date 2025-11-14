@@ -260,7 +260,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%), scale(0);
+  transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   background: #1b1925;
   padding: 16px;
@@ -450,17 +450,20 @@ function Sumi() {
 }
 
 function sug() {
-  if(suges) {
-  sugBox.innerHTML = "X"
-  sus.style.opacity = "opacity:1"
-  sus.style.transform = "scale(1)"
-  suges = !suges
+  if (suges) {
+    sugBox.innerHTML = "X"
+    sus.style.display = "flex"
+    requestAnimationFrame(() => {
+      sus.style.opacity = "1"
+      sus.style.transform = "translate(-50%, -50%) scale(1)"
+    })
   } else {
-    sus.style.opacity = "opacity:0"
-    sus.style.transform = "scale(0)"
+    sus.style.opacity = "0"
+    sus.style.transform = "translate(-50%, -50%) scale(0)"
+    setTimeout(() => sus.style.display = "none", 500)
     sugBox.innerHTML = "?"
-    suges = !suges
   }
+  suges = !suges
 }
 
 function Rename() {

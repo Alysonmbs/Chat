@@ -260,7 +260,8 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%), scale(0);
+  opacity: 0;
   background: #1b1925;
   padding: 16px;
   border-radius: 12px;
@@ -275,6 +276,8 @@
   width: 60%;
   max-height: 80vh;
   overflow-y: auto;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  animation: pulsaNeon 2s infinite alternate ease-in-out;
 }
 
 #sug {
@@ -346,6 +349,15 @@
 }
 .clickable:hover {
   color: var(--accent);
+}
+
+@keyframes pulsaNeon {
+  from {
+    filter: drop-shadow(0 0 5px #bb0000);
+  }
+  to {
+    filter: drop-shadow(0 0 25px #6f6fff);
+  }
 }
 
 </style>
@@ -440,10 +452,12 @@ function Sumi() {
 function sug() {
   if(suges) {
   sugBox.innerHTML = "X"
-  sus.style.display = "flex"
+  sus.style.opacity = "opacity:1"
+  sus.style.transform = "scale(1)"
   suges = !suges
   } else {
-    sus.style.display = "none"
+    sus.style.opacity = "opacity:0"
+    sus.style.transform = "scale(0)"
     sugBox.innerHTML = "?"
     suges = !suges
   }
